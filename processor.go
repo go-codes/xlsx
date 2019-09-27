@@ -1,4 +1,4 @@
-package xlsl
+package xlsx
 
 import "errors"
 
