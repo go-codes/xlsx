@@ -20,6 +20,9 @@ func ReadAll (name string, sheetIndex int) ([][]string, error) {
 
 func init () {
 	supportProcessor = make(map[string]Processor)
+	AddProcessor("xlsx", newProcessorXlsx())
+	AddProcessor("xls", newProcessorXls())
+	AddProcessor("csv", newProcessorCsv())
 }
 
 func AddProcessor(name string, processor Processor) {

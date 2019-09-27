@@ -7,11 +7,15 @@ import (
 	"os"
 )
 
-type processCsv struct {
+type processorCsv struct {
 
 }
 
-func (p *processCsv) Read (name string, sheetIndex int) (data [][]string, err error) {
+func newProcessorCsv () *processorCsv {
+	return &processorCsv{}
+}
+
+func (p *processorCsv) Read (name string, sheetIndex int) (data [][]string, err error) {
 	f, err := os.Open(name)
 	if err != nil {
 		return nil,err

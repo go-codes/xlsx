@@ -8,6 +8,10 @@ type processorXlsx struct {
 
 }
 
+func newProcessorXlsx() *processorXlsx {
+	return &processorXlsx{}
+}
+
 func (p *processorXlsx) Read (name string, sheetIndex int) (data [][]string, err error){
 	f, err := xlsx.OpenFile(name)
 	if err != nil {

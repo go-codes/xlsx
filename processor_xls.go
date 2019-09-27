@@ -8,6 +8,10 @@ type processorXls struct {
 
 }
 
+func newProcessorXls() *processorXls {
+	return &processorXls{}
+}
+
 func (p *processorXls) Read (name string, sheetIndex int) (data [][]string, err error){
 	workBook, err := xls.Open(name, "utf-8")
 
