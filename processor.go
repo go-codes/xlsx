@@ -6,10 +6,18 @@ var supportProcessor map[string]Processor
 
 
 type Processor interface {
-	Read (string, int) ([][]string, error)
+	Read(string, int) ([][]string, error)
+	ReadBytes (content []byte, sheetIndex int)  (data [][]string, err error)
+}
+func ReadBytes (content []byte, ext string, sheetIndex int) ([][]string, error) {
+	processor, found := supportProcessor[ext]
+	if !found {
+		checkError( errors.New("不支持的文件格式"))
+	}
+	return processor.ReadBytes(content, sheetIndex)
 }
 
-func ReadAll (name string, sheetIndex int) ([][]string, error) {
+func Read (name string, sheetIndex int) ([][]string, error) {
 	fileExt := getFileExt(name)
 	processor, found := supportProcessor[fileExt]
 	if !found {

@@ -1,8 +1,7 @@
 package xlsx
 
 import (
-	"bytes"
-	"github.com/360EntSecGroup-Skylar/excelize"
+	"fmt"
 	"github.com/tealeg/xlsx"
 )
 
@@ -35,11 +34,23 @@ func (p *processorXlsx) Read (name string, sheetIndex int) (data [][]string, err
 }
 
 func (p *processorXlsx) ReadBytes (content []byte, sheetIndex int) (data [][]string, err error){
-	f, err := excelize.OpenReader(bytes.NewReader(content))
+	f, err := xlsx.OpenBinary(content)
 	if err != nil {
 		return nil, err
 	}
 
-	data = f.GetRows(f.GetSheetName(sheetIndex))
+	workSheet := f.Sheets[0]
+	rows := workSheet.Rows
+	fmt.Println(workSheet.MaxRow)
+
+	for _, row := range rows {
+		var cols []string
+		for _, cell := range row.Cells {
+			cols = append(cols, cell.Value)
+		}
+		data = append(data, cols)
+	}
+	fmt.Println(rows)
 	return
+
 }
