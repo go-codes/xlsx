@@ -9,6 +9,6 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca
 	github.com/tealeg/xlsx v1.0.3
-	golang.org/x/text v0.3.2
+	golang.org/x/text v0.3.8
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 )
